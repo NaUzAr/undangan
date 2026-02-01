@@ -1,0 +1,372 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Lato', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-serif: 'Playfair Display', serif;
+    --font-script: 'Great Vibes', cursive;
+
+    /* Spring Color Palette - Pastel */
+    --color-merah-tua: #C89091;
+    /* Mauve/Rose - Primary */
+    --color-merah-sedang: #7B4E48;
+    /* Dusty Brown - Secondary */
+
+    /* Background Cream */
+    --color-beige-bg: #FCFAF2;
+    --color-beige-dark: #F9F1E5;
+
+    /* Accents - Blush & Pink */
+    --color-emas: #C89091;
+    --color-emas-tua: #7B4E48;
+    --color-abu-teks: #6b5c57;
+
+    /* New Spring Colors */
+    --color-blush: #E9D0CB;
+    --color-dusty-pink: #DDB2B1;
+
+    --animate-fade-in-up: fade-in-up 1s ease-out forwards;
+}
+
+@layer utilities {
+    .bg-noise {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    }
+
+    /* Base reveal animation */
+    .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Slide from left */
+    .reveal-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal-left.reveal-visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Slide from right */
+    .reveal-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal-right.reveal-visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Scale up */
+    .reveal-scale {
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal-scale.reveal-visible {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    /* Rotate in */
+    .reveal-rotate {
+        opacity: 0;
+        transform: rotate(-10deg) translateY(30px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal-rotate.reveal-visible {
+        opacity: 1;
+        transform: rotate(0) translateY(0);
+    }
+
+    /* Blur in */
+    .reveal-blur {
+        opacity: 0;
+        filter: blur(10px);
+        transform: translateY(20px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal-blur.reveal-visible {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Premium Sparkle Animation */
+@keyframes sparkle {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes float-gentle {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes glow-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(200, 144, 145, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(200, 144, 145, 0.6);
+    }
+}
+
+@layer utilities {
+    .sparkle-bg {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .sparkle-bg::before {
+        content: '✨';
+        position: absolute;
+        font-size: 12px;
+        animation: sparkle 3s infinite;
+    }
+
+    .animate-shimmer {
+        background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+        background-size: 200% 100%;
+        animation: shimmer 2s infinite;
+    }
+
+    .animate-float {
+        animation: float-gentle 3s ease-in-out infinite;
+    }
+
+    .animate-glow {
+        animation: glow-pulse 2s ease-in-out infinite;
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .gradient-text {
+        background: linear-gradient(135deg, #7B4E48 0%, #C89091 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Gold shimmer effect */
+    .gold-shimmer {
+        background: linear-gradient(90deg, #C89091 0%, #E9D0CB 25%, #d4af37 50%, #E9D0CB 75%, #C89091 100%);
+        background-size: 400% 100%;
+        animation: gold-shimmer 3s ease-in-out infinite;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Elegant border frame */
+    .elegant-frame {
+        border: 2px solid transparent;
+        background: linear-gradient(white, white) padding-box,
+            linear-gradient(135deg, #C89091 0%, #d4af37 50%, #C89091 100%) border-box;
+    }
+
+    /* Petal falling animation */
+    .petal-fall {
+        position: fixed;
+        top: -10%;
+        animation: petal-falling 10s linear infinite;
+        pointer-events: none;
+        z-index: 40;
+    }
+
+    /* Heart beat animation */
+    .heart-beat {
+        animation: heart-beat 1.5s ease-in-out infinite;
+    }
+
+    /* Typewriter effect for names */
+    .typewriter {
+        overflow: hidden;
+        white-space: nowrap;
+        animation: typewriter 2s steps(20) forwards;
+    }
+
+    /* Staggered children animation */
+    .stagger-children>* {
+        opacity: 0;
+        animation: stagger-fade-in 0.6s ease-out forwards;
+    }
+
+    .stagger-children>*:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .stagger-children>*:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .stagger-children>*:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    .stagger-children>*:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+
+    .stagger-children>*:nth-child(5) {
+        animation-delay: 0.5s;
+    }
+}
+
+@keyframes gold-shimmer {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes petal-falling {
+    0% {
+        transform: translateY(0) rotate(0deg) translateX(0);
+        opacity: 1;
+    }
+
+    25% {
+        transform: translateY(25vh) rotate(90deg) translateX(20px);
+    }
+
+    50% {
+        transform: translateY(50vh) rotate(180deg) translateX(-20px);
+        opacity: 0.8;
+    }
+
+    75% {
+        transform: translateY(75vh) rotate(270deg) translateX(15px);
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(360deg) translateX(-10px);
+        opacity: 0;
+    }
+}
+
+@keyframes heart-beat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.1);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    75% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes stagger-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(200, 144, 145, 0.1);
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #C89091 0%, #7B4E48 100%);
+    border-radius: 10px;
+}

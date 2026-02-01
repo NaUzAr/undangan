@@ -4,34 +4,14 @@ services:
     container_name: undangan_nikahan_app
     restart: always
     environment:
-      APP_NAME: "Laravel"
-      APP_ENV: production
-      APP_DEBUG: "false"
-      APP_URL: "https://DOMAIN.com"
-      APP_KEY: "base64:HLQJ2DAecSdUpPnrEqebCg6qLzHXAvOzYhI8xoXsI8w="
-
-      # Database Configuration (Matched to .env - SQLite)
-      DB_CONNECTION: sqlite
-      # If you want to use the shared postgres from the template, uncomment below and comment out sqlite:
-      # DB_CONNECTION: pgsql
-      # DB_HOST: shared_postgres
-      # DB_PORT: 5432
-      # DB_DATABASE: db_undangan_nikahan
-      # DB_USERNAME: webadmin
-      # DB_PASSWORD: YOUR_PASSWORD
-
-      BROADCAST_CONNECTION: log
-      FILESYSTEM_DISK: local
-      QUEUE_CONNECTION: database
-
-      # Session & Cache
-      SESSION_DRIVER: database
-      CACHE_STORE: database
-
+      - VIRTUAL_HOST=undangan.yourdomain.com
+      - LETSENCRYPT_HOST=undangan.yourdomain.com
+      - LETSENCRYPT_EMAIL=your@email.com
+    env_file:
+      - ./src/.env
     volumes:
-      - ./storage:/var/www/html/storage
-      # Mount the database file if using SQLite to persist data
-      - ./database/database.sqlite:/var/www/html/database/database.sqlite
+      - ./src/storage:/var/www/html/storage
+      - ./src/database:/var/www/html/database
     networks:
       - webapps
 
