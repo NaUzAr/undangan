@@ -39,7 +39,7 @@ COPY nginx.conf /etc/nginx/sites-available/default
 COPY supervisord.ini /etc/supervisor/conf.d/supervisord.conf
 
 # Install PHP dependencies
-RUN composer install --no-interaction --optimize-autoloader --no-dev
+RUN composer install --no-interaction --optimize-autoloader --no-scripts
 
 # Install and build Node dependencies
 RUN npm install && npm run build
