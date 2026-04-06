@@ -1,114 +1,58 @@
 <x-layout>
     <!-- Background Texture -->
-    <div class="fixed inset-0 bg-noise pointer-events-none z-0 mix-blend-multiply opacity-50"></div>
-
-    <!-- Decorative Floral Corners (Top) -->
-    <div class="fixed top-0 left-0 w-32 h-32 opacity-20 pointer-events-none z-5">
-        <svg viewBox="0 0 100 100" class="w-full h-full text-merah-tua fill-current">
-            <path d="M0,0 Q50,20 20,50 Q-10,80 0,100 L0,0Z" opacity="0.3" />
-            <circle cx="15" cy="15" r="8" opacity="0.5" />
-            <circle cx="5" cy="30" r="5" opacity="0.4" />
-            <circle cx="30" cy="5" r="5" opacity="0.4" />
-        </svg>
-    </div>
-    <div class="fixed top-0 right-0 w-32 h-32 opacity-20 pointer-events-none z-5 transform scale-x-[-1]">
-        <svg viewBox="0 0 100 100" class="w-full h-full text-merah-tua fill-current">
-            <path d="M0,0 Q50,20 20,50 Q-10,80 0,100 L0,0Z" opacity="0.3" />
-            <circle cx="15" cy="15" r="8" opacity="0.5" />
-            <circle cx="5" cy="30" r="5" opacity="0.4" />
-            <circle cx="30" cy="5" r="5" opacity="0.4" />
-        </svg>
-    </div>
+    <div class="fixed inset-0 bg-noise pointer-events-none z-0 mix-blend-multiply opacity-30"></div>
 
     <!-- Cover Overlay -->
+    <!-- Cover Overlay -->
     <div id="cover"
-        class="fixed inset-0 z-50 bg-[#F9F1E5] flex flex-col items-center justify-center text-center p-6 transition-transform duration-1000 ease-in-out overflow-hidden {{ session('skip_cover') ? 'translate-y-[-100%]' : '' }}">
+        class="fixed inset-0 z-50 flex flex-col items-center justify-center text-center p-6 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-hidden {{ session('skip_cover') ? 'translate-y-[-100%] opacity-0' : '' }}"
+        style="background: linear-gradient(180deg, #FBF7F0 0%, #F5EDE0 40%, #E9D0CB 100%);">
 
-        <!-- Floating Autumn Leaves Animation -->
-        <div class="absolute inset-0 pointer-events-none overflow-hidden" id="floating-leaves">
-            <div class="leaf-float" style="left: 5%; animation-delay: 0s;">🍂</div>
-            <div class="leaf-float" style="left: 15%; animation-delay: 1s;">🍁</div>
-            <div class="leaf-float" style="left: 25%; animation-delay: 2s;">🍂</div>
-            <div class="leaf-float" style="left: 35%; animation-delay: 0.5s;">🍃</div>
-            <div class="leaf-float" style="left: 45%; animation-delay: 1.5s;">🍁</div>
-            <div class="leaf-float" style="left: 55%; animation-delay: 2.5s;">🍂</div>
-            <div class="leaf-float" style="left: 65%; animation-delay: 0.8s;">🍁</div>
-            <div class="leaf-float" style="left: 75%; animation-delay: 1.8s;">🍃</div>
-            <div class="leaf-float" style="left: 85%; animation-delay: 2.2s;">🍂</div>
-            <div class="leaf-float" style="left: 95%; animation-delay: 0.3s;">🍁</div>
+        <!-- Animated Concentric Rings -->
+        <div class="cover-ring" style="width:300px;height:300px;animation-delay:0s;"></div>
+        <div class="cover-ring" style="width:450px;height:450px;animation-delay:2s;"></div>
+        <div class="cover-ring" style="width:600px;height:600px;animation-delay:4s;"></div>
+
+        <!-- Floating SVG Sakura Petals -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            @for($i = 0; $i < 12; $i++)
+            <svg class="sakura-petal" style="left:{{ rand(2, 95) }}%;--delay:{{ $i * 0.8 }}s;--duration:{{ rand(10,16) }}s;" width="20" height="20" viewBox="0 0 20 20">
+                <ellipse cx="10" cy="10" rx="8" ry="5" fill="rgba(200,144,145,0.{{ rand(3,6) }})" transform="rotate({{ rand(0,180) }} 10 10)"/>
+            </svg>
+            @endfor
         </div>
 
-        <style>
-            .leaf-float {
-                position: absolute;
-                bottom: -50px;
-                font-size: 28px;
-                opacity: 0.7;
-                animation: floatUp 8s ease-in-out infinite;
-            }
-
-            @keyframes floatUp {
-                0% {
-                    transform: translateY(0) rotate(0deg);
-                    opacity: 0.7;
-                }
-
-                50% {
-                    opacity: 0.9;
-                    transform: translateY(-50vh) rotate(180deg);
-                }
-
-                100% {
-                    transform: translateY(-100vh) rotate(360deg);
-                    opacity: 0;
-                }
-            }
-        </style>
-
-        <!-- Decorative Ornament Top -->
-        <div class="absolute top-8 left-1/2 -translate-x-1/2 text-[#7B4E48]/40 text-6xl">✦</div>
-
         <!-- Main Title Block -->
-        <div class="text-center space-y-4 relative z-10 px-8">
-            <!-- Decorative Lines -->
-            <div class="flex items-center justify-center gap-4 mb-6">
-                <div class="w-16 h-px bg-gradient-to-r from-transparent to-[#7B4E48]/40"></div>
-                <span class="text-[#7B4E48] text-2xl">❦</span>
-                <div class="w-16 h-px bg-gradient-to-l from-transparent to-[#7B4E48]/40"></div>
+        <div class="text-center space-y-5 relative z-10 px-8">
+            <div class="section-divider mb-4">
+                <span class="text-[#C9A96E] text-2xl">❦</span>
             </div>
 
-            <p class="font-sans tracking-[0.4em] text-[#7B4E48]/80 text-xs uppercase">The Wedding of</p>
+            <p class="font-sans tracking-[0.5em] text-[#7B4E48]/60 text-[10px] uppercase">The Wedding of</p>
 
-            <!-- Couple Names - Large & Elegant -->
-            <h1 class="font-script text-7xl text-[#7B4E48] drop-shadow-lg leading-tight">
+            <h1 class="font-script text-7xl text-[#7B4E48] leading-tight drop-shadow-sm" style="text-shadow: 0 2px 20px rgba(123,78,72,0.15);">
                 Ahya<br>
-                <span class="text-[#C89091] text-4xl">&</span><br>
+                <span class="gold-shimmer text-4xl">&</span><br>
                 Eko
             </h1>
 
-            <!-- Date Badge -->
-            <div
-                class="inline-block bg-[#7B4E48]/10 backdrop-blur-sm px-6 py-2 rounded-full border border-[#7B4E48]/30 mt-4">
-                <p class="font-serif text-lg text-[#7B4E48]">3 Mei 2026</p>
+            <div class="inline-block bg-white/50 backdrop-blur-sm px-8 py-2.5 rounded-full border border-[#C9A96E]/30 shadow-sm">
+                <p class="font-serif text-lg text-[#7B4E48] tracking-wide">3 Mei 2026</p>
             </div>
 
-            <!-- Decorative Lines Bottom -->
-            <div class="flex items-center justify-center gap-4 mt-6">
-                <div class="w-12 h-px bg-gradient-to-r from-transparent to-[#7B4E48]/40"></div>
-                <span class="text-[#7B4E48]/50 text-sm">✧ ✦ ✧</span>
-                <div class="w-12 h-px bg-gradient-to-l from-transparent to-[#7B4E48]/40"></div>
+            <div class="section-divider mt-4">
+                <span class="text-[#C9A96E]/50 text-sm">✧ ✦ ✧</span>
             </div>
         </div>
 
-        <p class="font-sans mb-2 tracking-widest text-sm uppercase relative z-10 text-[#7B4E48] mt-8">Kepada Yth.</p>
-        <div
-            class="font-bold text-lg mb-8 bg-[#7B4E48]/10 px-6 py-2 rounded-full backdrop-blur-sm border border-[#7B4E48]/30 relative z-10 text-[#7B4E48]">
+        <p class="font-sans mb-2 tracking-[0.3em] text-xs uppercase relative z-10 text-[#7B4E48]/70 mt-10">Kepada Yth.</p>
+        <div class="font-serif font-bold text-lg mb-8 glass-card px-8 py-3 rounded-full relative z-10 text-[#7B4E48]">
             {{ $guest ? $guest->name : 'Bapak/Ibu/Saudara/i' }}
         </div>
 
         <button onclick="openInvitation()"
-            class="group relative px-8 py-3 bg-[#7B4E48] text-white font-serif font-bold rounded-full shadow-[0_0_20px_rgba(123,78,72,0.4)] hover:bg-[#5a3a36] hover:scale-105 transition-all duration-300 z-10">
-            <i class="fas fa-envelope-open mr-2"></i> Buka Undangan
+            class="envelope-icon group relative px-10 py-4 bg-gradient-to-r from-[#7B4E48] to-[#5a3a36] text-white font-serif font-bold rounded-full shadow-[0_4px_24px_rgba(123,78,72,0.4)] hover:shadow-[0_8px_32px_rgba(123,78,72,0.6)] hover:scale-105 transition-all duration-500 z-10">
+            <i class="fas fa-envelope-open mr-2 group-hover:animate-bounce"></i> Buka Undangan
         </button>
     </div>
 
@@ -116,125 +60,75 @@
     <div id="main-content"
         class="relative z-10 transition-opacity duration-1000 px-6 pt-12 pb-24 space-y-20 {{ session('skip_cover') ? 'opacity-100' : 'opacity-0' }}">
 
-        <!-- Floating Sparkles on Main Page -->
-        <div class="fixed inset-0 pointer-events-none z-5 overflow-hidden" id="main-sparkles">
-            <div class="sparkle-float" style="left: 10%; top: 20%;">✦</div>
-            <div class="sparkle-float" style="left: 85%; top: 15%;">✧</div>
-            <div class="sparkle-float" style="left: 20%; top: 50%;">✦</div>
-            <div class="sparkle-float" style="left: 90%; top: 45%;">✧</div>
-            <div class="sparkle-float" style="left: 5%; top: 70%;">✦</div>
-            <div class="sparkle-float" style="left: 80%; top: 75%;">✧</div>
-            <div class="sparkle-float" style="left: 15%; top: 85%;">✦</div>
-            <div class="sparkle-float" style="left: 75%; top: 90%;">✧</div>
+        <!-- Falling Sakura Petals on Main Page -->
+        <div class="fixed inset-0 pointer-events-none z-5 overflow-hidden" id="main-petals">
+            @for($p = 0; $p < 15; $p++)
+            <svg class="sakura-petal" style="left:{{ rand(2,96) }}%;--delay:{{ $p * 1.2 }}s;--duration:{{ rand(11,18) }}s;" width="16" height="16" viewBox="0 0 20 20">
+                <ellipse cx="10" cy="10" rx="7" ry="4" fill="rgba(200,144,145,0.{{ rand(2,5) }})" transform="rotate({{ rand(0,360) }} 10 10)"/>
+            </svg>
+            @endfor
         </div>
 
-        <style>
-            .sparkle-float {
-                position: fixed;
-                font-size: 16px;
-                color: #7B4E48;
-                opacity: 0;
-                animation: sparkleMain 4s ease-in-out infinite;
-            }
-
-            .sparkle-float:nth-child(odd) {
-                animation-delay: 0s;
-            }
-
-            .sparkle-float:nth-child(even) {
-                animation-delay: 2s;
-            }
-
-            @keyframes sparkleMain {
-
-                0%,
-                100% {
-                    opacity: 0;
-                    transform: scale(0.5) rotate(0deg);
-                }
-
-                50% {
-                    opacity: 0.8;
-                    transform: scale(1.2) rotate(180deg);
-                }
-            }
-        </style>
+        <!-- Sparkle Dots -->
+        <div class="sparkle-dot" style="left:8%;top:18%;--delay:0s;--duration:4s;"></div>
+        <div class="sparkle-dot" style="left:88%;top:12%;--delay:1.5s;--duration:3.5s;"></div>
+        <div class="sparkle-dot" style="left:15%;top:55%;--delay:0.8s;--duration:4.5s;"></div>
+        <div class="sparkle-dot" style="left:92%;top:42%;--delay:2s;--duration:3s;"></div>
+        <div class="sparkle-dot" style="left:6%;top:78%;--delay:1s;--duration:5s;"></div>
+        <div class="sparkle-dot" style="left:82%;top:82%;--delay:2.5s;--duration:3.8s;"></div>
 
         <!-- Section: Hero (Home) -->
         <section id="home" class="text-center pt-6 reveal-on-scroll relative">
-            <!-- Subtle Sparkle Decorations -->
-            <div class="absolute top-0 left-1/4 text-[#c9a87c]/60 text-lg animate-pulse" style="animation-delay: 0.5s;">
-                ✦</div>
-            <div class="absolute top-8 right-1/4 text-[#c9a87c]/40 text-sm animate-pulse" style="animation-delay: 1s;">✧
-            </div>
-            <div class="absolute top-16 left-1/3 text-[#c9a87c]/30 text-xs animate-pulse"
-                style="animation-delay: 1.5s;">✦</div>
-
-            <div class="space-y-4">
-                <p class="text-[#C89091] text-sm tracking-[0.4em] uppercase font-medium">The Wedding of</p>
-                <h1 class="font-script text-7xl text-[#7B4E48] drop-shadow-sm leading-tight">Ahya & Eko</h1>
-                <div class="inline-block bg-[#E9D0CB]/30 px-8 py-3 rounded-full border border-[#C89091]/30">
+            <div class="space-y-5">
+                <p class="text-[#C9A96E] text-xs tracking-[0.5em] uppercase font-medium">The Wedding of</p>
+                <h1 class="font-script text-7xl gradient-text drop-shadow-sm leading-tight">Ahya & Eko</h1>
+                <div class="inline-block glass-card px-8 py-3 rounded-full">
                     <p class="font-serif text-xl text-[#7B4E48]">Minggu, 3 Mei 2026</p>
                 </div>
             </div>
 
-            <!-- Elegant Divider -->
-            <div class="flex items-center justify-center gap-4 py-8">
-                <div class="w-16 h-px bg-gradient-to-r from-transparent to-[#C89091]/50"></div>
-                <span class="text-[#c9a87c] text-2xl">❦</span>
-                <div class="w-16 h-px bg-gradient-to-l from-transparent to-[#C89091]/50"></div>
+            <div class="section-divider py-8">
+                <span class="text-[#C9A96E] text-2xl">❦</span>
             </div>
 
             <!-- Quote Card -->
-            <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 mx-2 border border-[#C89091]/20 shadow-sm">
+            <div class="glass-card rounded-2xl p-7 mx-2">
                 <p class="font-serif italic text-sm text-[#7B4E48]/80 leading-relaxed">
                     "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu
                     sendiri, supaya kamu cenderung dan merasa tenteram kepadanya."
                 </p>
                 <div class="flex items-center justify-center gap-3 mt-4">
-                    <div class="w-8 h-px bg-[#C89091]/40"></div>
-                    <p class="text-xs font-semibold text-[#C89091] tracking-wider">QS. AR-RUM: 21</p>
-                    <div class="w-8 h-px bg-[#C89091]/40"></div>
+                    <div class="w-8 h-px bg-[#C9A96E]/40"></div>
+                    <p class="text-xs font-bold text-[#C9A96E] tracking-widest uppercase">QS. AR-RUM: 21</p>
+                    <div class="w-8 h-px bg-[#C9A96E]/40"></div>
                 </div>
             </div>
         </section>
 
         <!-- Section Divider -->
-        <div class="flex justify-center items-center py-6">
-            <div class="flex items-center gap-3">
-                <div class="w-12 h-px bg-[#C89091]/30"></div>
-                <span class="text-[#C89091]/60 text-xl">✧</span>
-                <div class="w-12 h-px bg-[#C89091]/30"></div>
-            </div>
+        <div class="section-divider py-6">
+            <span class="text-[#C9A96E]/60 text-xl">✧</span>
         </div>
 
         <!-- Section: Mempelai -->
         <section id="mempelai" class="reveal-on-scroll">
             <div class="py-8 px-2 relative">
-                <!-- Decorative Corner Ornaments -->
-                <div class="absolute top-0 left-0 text-[#c9a87c]/40 text-2xl">❧</div>
-                <div class="absolute top-0 right-0 text-[#c9a87c]/40 text-2xl rotate-90">❧</div>
-                <div class="absolute bottom-0 left-0 text-[#c9a87c]/40 text-2xl -rotate-90">❧</div>
-                <div class="absolute bottom-0 right-0 text-[#c9a87c]/40 text-2xl rotate-180">❧</div>
-
                 <div class="space-y-10">
                     <!-- Bride -->
                     <div class="text-center group">
                         <div class="relative inline-block">
-                            <div
-                                class="w-44 h-44 mx-auto rounded-full p-1 bg-gradient-to-br from-[#c9a87c] to-[#a08050] shadow-xl">
-                                <div class="w-full h-full rounded-full border-4 border-white overflow-hidden">
-                                    <img src="https://images.unsplash.com/photo-1549417229-aa67d3263c09?q=80&w=200&auto=format&fit=crop"
+                            <div class="photo-frame w-48 h-48 mx-auto rounded-full p-1.5">
+                                <div class="w-full h-full rounded-full border-4 border-white overflow-hidden shadow-xl bg-gradient-to-br from-[#C9A96E] to-[#C89091] p-0.5">
+                                    <img src="{{ asset('img/mempelai/wanita.jpeg') }}"
                                         class="w-full h-full rounded-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                        alt="Wanita">
+                                        alt="Ahya Safira">
                                 </div>
                             </div>
-                            <div
-                                class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#b8927a] to-[#9a7a68] text-white text-xs font-bold px-5 py-1.5 rounded-full shadow-lg">
+                            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#C9A96E] to-[#C89091] text-white text-xs font-bold px-6 py-1.5 rounded-full shadow-lg">
                                 Mempelai Wanita
                             </div>
                         </div>
-                        <h2 class="font-script text-5xl text-[#7B4E48] mt-6 mb-2 drop-shadow-sm">Ahya Safira</h2>
+                        <h2 class="font-script text-5xl gradient-text mt-7 mb-2">Ahya Safira</h2>
                         <p class="font-sans text-xs font-medium tracking-widest text-[#8a7060] uppercase">
                             Putri Terakhir dari Bpk. Haryanta & Ibu Ratri Dwi Wahyuni
                         </p>
@@ -247,28 +141,26 @@
 
                     <!-- Heart Divider -->
                     <div class="flex items-center justify-center gap-4">
-                        <div class="w-20 h-px bg-gradient-to-r from-transparent to-[#c9a87c]/60"></div>
-                        <div class="text-4xl text-[#c9a87c] animate-pulse">♥</div>
-                        <div class="w-20 h-px bg-gradient-to-l from-transparent to-[#c9a87c]/60"></div>
+                        <div class="w-20 h-px bg-gradient-to-r from-transparent to-[#C9A96E]/60"></div>
+                        <div class="text-4xl text-[#C9A96E] heart-beat">♥</div>
+                        <div class="w-20 h-px bg-gradient-to-l from-transparent to-[#C9A96E]/60"></div>
                     </div>
 
                     <!-- Groom -->
                     <div class="text-center group">
                         <div class="relative inline-block">
-                            <div
-                                class="w-44 h-44 mx-auto rounded-full p-1 bg-gradient-to-br from-[#c9a87c] to-[#a08050] shadow-xl">
-                                <div class="w-full h-full rounded-full border-4 border-white overflow-hidden">
-                                    <img src="https://images.unsplash.com/photo-1550503023-e5781abe6aee?q=80&w=200&auto=format&fit=crop"
+                            <div class="photo-frame w-48 h-48 mx-auto rounded-full p-1.5">
+                                <div class="w-full h-full rounded-full border-4 border-white overflow-hidden shadow-xl bg-gradient-to-br from-[#7B4E48] to-[#C9A96E] p-0.5">
+                                    <img src="{{ asset('img/mempelai/pria.jpeg') }}"
                                         class="w-full h-full rounded-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                        alt="Pria">
+                                        alt="Eko Prasetyo">
                                 </div>
                             </div>
-                            <div
-                                class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#5a4a42] to-[#7B4E48] text-white text-xs font-bold px-5 py-1.5 rounded-full shadow-lg">
+                            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#7B4E48] to-[#C9A96E] text-white text-xs font-bold px-6 py-1.5 rounded-full shadow-lg">
                                 Mempelai Pria
                             </div>
                         </div>
-                        <h2 class="font-script text-5xl text-[#7B4E48] mt-6 mb-2 drop-shadow-sm">Eko Prasetyo</h2>
+                        <h2 class="font-script text-5xl gradient-text mt-7 mb-2">Eko Prasetyo</h2>
                         <p class="font-sans text-xs font-medium tracking-widest text-[#8a7060] uppercase">
                             Putra Pertama dari Bpk. Wakidi & Ibu Suyatni
                         </p>
@@ -400,60 +292,102 @@
 
         <!-- Section: Gallery (Our Moment) -->
         <section id="gallery" class="reveal-on-scroll">
-            <!-- Header -->
-            <div class="text-center mb-6">
-                <p class="text-[#C89091] text-sm tracking-[0.3em] uppercase mb-2">Gallery</p>
-                <h2 class="font-script text-5xl text-[#7B4E48]">Our Moment</h2>
+            <div class="text-center mb-8">
+                <p class="text-[#C9A96E] text-xs tracking-[0.5em] uppercase mb-2">Gallery</p>
+                <h2 class="font-script text-5xl gradient-text">Our Moment</h2>
                 <p class="text-sm text-[#7B4E48]/60 italic mt-2">"Setiap momen bersama adalah kenangan abadi"</p>
-                <div class="flex items-center justify-center gap-3 mt-4">
-                    <div class="w-12 h-px bg-[#C89091]/40"></div>
-                    <span class="text-[#C89091]">✦</span>
-                    <div class="w-12 h-px bg-[#C89091]/40"></div>
+                <div class="section-divider mt-4">
+                    <span class="text-[#C9A96E]">✦</span>
                 </div>
             </div>
 
-            <!-- Masonry Gallery Grid -->
-            <div class="grid grid-cols-2 gap-3">
-                <!-- Row 1 -->
-                <div class="rounded-xl overflow-hidden shadow-lg aspect-[3/4]">
-                    <img src="https://images.unsplash.com/photo-1549417229-aa67d3263c09?q=80&w=400&auto=format&fit=crop"
-                        class="w-full h-full object-cover hover:scale-110 transition duration-500" alt="Gallery 1">
+            @php
+                // 5 curated photos: 2 portrait, 1 landscape, 2 portrait
+                $gallery_photos = [2, 4, 5, 8, 6];
+            @endphp
+
+            <!-- 2-1-2 Gallery Grid -->
+            <div class="gallery-grid-212">
+                <!-- Row 1: Two portrait photos -->
+                <div class="gallery-row gallery-row-pair">
+                    <div class="gallery-card" onclick="openLightbox(0)">
+                        <img src="{{ asset('img/gallery/'.$gallery_photos[0].'.jpeg') }}" alt="Gallery 1" loading="lazy">
+                    </div>
+                    <div class="gallery-card" onclick="openLightbox(1)">
+                        <img src="{{ asset('img/gallery/'.$gallery_photos[1].'.jpeg') }}" alt="Gallery 2" loading="lazy">
+                    </div>
                 </div>
-                <div class="rounded-xl overflow-hidden shadow-lg aspect-square">
-                    <img src="https://images.unsplash.com/photo-1550503023-e5781abe6aee?q=80&w=400&auto=format&fit=crop"
-                        class="w-full h-full object-cover hover:scale-110 transition duration-500" alt="Gallery 2">
+                <!-- Row 2: One wide landscape photo -->
+                <div class="gallery-row gallery-row-single">
+                    <div class="gallery-card gallery-card-wide" onclick="openLightbox(2)">
+                        <img src="{{ asset('img/gallery/'.$gallery_photos[2].'.jpeg') }}" alt="Gallery 3" loading="lazy">
+                    </div>
                 </div>
-                <!-- Row 2 -->
-                <div class="rounded-xl overflow-hidden shadow-lg aspect-square">
-                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=400&auto=format&fit=crop"
-                        class="w-full h-full object-cover hover:scale-110 transition duration-500" alt="Gallery 3">
-                </div>
-                <div class="rounded-xl overflow-hidden shadow-lg aspect-[3/4]">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400&auto=format&fit=crop"
-                        class="w-full h-full object-cover hover:scale-110 transition duration-500" alt="Gallery 4">
-                </div>
-                <!-- Row 3 - Full width -->
-                <div class="col-span-2 rounded-xl overflow-hidden shadow-lg aspect-video">
-                    <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=800&auto=format&fit=crop"
-                        class="w-full h-full object-cover hover:scale-105 transition duration-500" alt="Gallery 5">
+                <!-- Row 3: Two portrait photos -->
+                <div class="gallery-row gallery-row-pair">
+                    <div class="gallery-card" onclick="openLightbox(3)">
+                        <img src="{{ asset('img/gallery/'.$gallery_photos[3].'.jpeg') }}" alt="Gallery 4" loading="lazy">
+                    </div>
+                    <div class="gallery-card" onclick="openLightbox(4)">
+                        <img src="{{ asset('img/gallery/'.$gallery_photos[4].'.jpeg') }}" alt="Gallery 5" loading="lazy">
+                    </div>
                 </div>
             </div>
         </section>
+
+
+        <!-- Lightbox Modal -->
+        <div id="lightbox" class="lightbox-modal" onclick="onLightboxClick(event)">
+            <div class="lightbox-backdrop"></div>
+            <!-- Close Button -->
+            <button class="lightbox-close" onclick="closeLightbox()">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Photo Counter -->
+            <div class="lightbox-counter">
+                <span id="lightbox-counter">1 / 5</span>
+            </div>
+
+            <!-- Prev Arrow -->
+            <button class="lightbox-nav lightbox-nav-prev" onclick="navigateLightbox(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <!-- Image Container -->
+            <div class="lightbox-img-container">
+                <img id="lightbox-img" src="" class="lightbox-img" alt="Gallery">
+            </div>
+
+            <!-- Next Arrow -->
+            <button class="lightbox-nav lightbox-nav-next" onclick="navigateLightbox(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Thumbnail Strip -->
+            <div class="lightbox-thumbs-container">
+                <div class="lightbox-thumbs-track custom-scrollbar">
+                    @foreach($gallery_photos as $i => $photo)
+                    <img src="{{ asset('img/gallery/'.$photo.'.jpeg') }}"
+                        class="lightbox-thumb-img"
+                        onclick="goToLightbox({{ $i }})" data-index="{{ $i }}" loading="lazy">
+                    @endforeach
+                </div>
+            </div>
+        </div>
 
         <!-- Section: RSVP & Wishes -->
         <section id="rsvp" class="space-y-8 reveal-on-scroll">
             <!-- Header -->
             <div class="text-center">
-                <p class="text-[#C89091] text-sm tracking-[0.3em] uppercase mb-2">RSVP</p>
-                <h2 class="font-serif text-3xl font-bold text-[#7B4E48]">Konfirmasi Kehadiran</h2>
-                <div class="flex items-center justify-center gap-3 mt-3">
-                    <div class="w-10 h-px bg-[#C89091]/40"></div>
-                    <span class="text-[#C89091]">✦</span>
-                    <div class="w-10 h-px bg-[#C89091]/40"></div>
+                <p class="text-[#C9A96E] text-xs tracking-[0.5em] uppercase mb-2">RSVP</p>
+                <h2 class="font-serif text-3xl font-bold gradient-text">Konfirmasi Kehadiran</h2>
+                <div class="section-divider mt-3">
+                    <span class="text-[#C9A96E]">✦</span>
                 </div>
             </div>
 
-            <div class="bg-merah-tua text-white p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+            <div class="glass-card-dark text-white p-8 rounded-3xl relative overflow-hidden">
                 <div class="relative z-10">
                     <p class="text-center text-sm mb-6 opacity-90">Partisipasi Anda sangat berarti bagi kami.</p>
 
@@ -747,17 +681,43 @@
 
         <!-- Footer -->
         <footer class="text-center pt-8 pb-4">
-            <p class="font-script text-3xl text-merah-tua mb-2">Fira & Eko</p>
+            <p class="font-script text-3xl gradient-text mb-2">Fira & Eko</p>
             <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-4">Created with Love • 2026</p>
-            <div class="pt-3 border-t border-gray-200">
+            <div class="pt-3 border-t border-[#C9A96E]/20">
                 <p class="text-[10px] text-gray-400">Made by</p>
                 <a href="https://instagram.com/nau.zhar_" target="_blank"
-                    class="inline-flex items-center gap-1 text-sm text-[#7B4E48] hover:text-[#C89091] transition">
+                    class="inline-flex items-center gap-1 text-sm text-[#7B4E48] hover:text-[#C9A96E] transition">
                     <i class="fab fa-instagram"></i> @nau.zhar_
                 </a>
             </div>
         </footer>
     </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav fixed bottom-0 left-1/2 -translate-x-1/2 max-w-md w-full z-40 px-2 py-2" id="bottom-nav" style="display:none;">
+        <div class="flex justify-around items-center">
+            <a href="#home" class="flex flex-col items-center gap-0.5 text-[#7B4E48]/50 text-[10px] py-1 px-2" onclick="smoothScroll(event,'home')">
+                <i class="fas fa-home text-base"></i>
+                <span>Home</span>
+            </a>
+            <a href="#mempelai" class="flex flex-col items-center gap-0.5 text-[#7B4E48]/50 text-[10px] py-1 px-2" onclick="smoothScroll(event,'mempelai')">
+                <i class="fas fa-heart text-base"></i>
+                <span>Mempelai</span>
+            </a>
+            <a href="#acara" class="flex flex-col items-center gap-0.5 text-[#7B4E48]/50 text-[10px] py-1 px-2" onclick="smoothScroll(event,'acara')">
+                <i class="fas fa-calendar-alt text-base"></i>
+                <span>Acara</span>
+            </a>
+            <a href="#gallery" class="flex flex-col items-center gap-0.5 text-[#7B4E48]/50 text-[10px] py-1 px-2" onclick="smoothScroll(event,'gallery')">
+                <i class="fas fa-images text-base"></i>
+                <span>Gallery</span>
+            </a>
+            <a href="#rsvp" class="flex flex-col items-center gap-0.5 text-[#7B4E48]/50 text-[10px] py-1 px-2" onclick="smoothScroll(event,'rsvp')">
+                <i class="fas fa-envelope text-base"></i>
+                <span>RSVP</span>
+            </a>
+        </div>
+    </nav>
 
     <!-- Scripts -->
     <script>
@@ -765,31 +725,132 @@
         function openInvitation() {
             const cover = document.getElementById('cover');
             const mainContent = document.getElementById('main-content');
+            const bottomNav = document.getElementById('bottom-nav');
 
             cover.style.transform = 'translateY(-100%)';
+            cover.style.opacity = '0';
 
             setTimeout(() => {
                 mainContent.classList.remove('opacity-0');
+                mainContent.classList.add('opacity-100');
+                if(bottomNav) bottomNav.style.display = 'block';
             }, 500);
+
+            setTimeout(() => { cover.style.display = 'none'; }, 1200);
 
             toggleMusic();
         }
 
-        // Countdown Logic
+        // Gallery Images Array (5 curated photos)
+        const galleryImages = [
+            @foreach($gallery_photos as $i => $photo)
+            "{{ asset('img/gallery/'.$photo.'.jpeg') }}"{{ $i < count($gallery_photos) - 1 ? ',' : '' }}
+            @endforeach
+        ];
+        let currentLightboxIndex = 0;
+
+        // ====== LIGHTBOX ======
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            updateLightbox();
+            const lb = document.getElementById('lightbox');
+            lb.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function updateLightbox() {
+            const img = document.getElementById('lightbox-img');
+            img.classList.add('lightbox-img-exit');
+            setTimeout(() => {
+                img.src = galleryImages[currentLightboxIndex];
+                img.onload = () => {
+                    img.classList.remove('lightbox-img-exit');
+                };
+            }, 200);
+            document.getElementById('lightbox-counter').textContent = `${currentLightboxIndex + 1} / ${galleryImages.length}`;
+            document.querySelectorAll('.lightbox-thumb-img').forEach(thumb => {
+                if (parseInt(thumb.dataset.index) === currentLightboxIndex) {
+                    thumb.classList.add('active');
+                    thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+
+        function navigateLightbox(dir) {
+            currentLightboxIndex = (currentLightboxIndex + dir + galleryImages.length) % galleryImages.length;
+            updateLightbox();
+        }
+
+        function goToLightbox(index) {
+            currentLightboxIndex = index;
+            updateLightbox();
+        }
+
+        function closeLightbox() {
+            const lb = document.getElementById('lightbox');
+            lb.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function onLightboxClick(event) {
+            if (event.target.classList.contains('lightbox-backdrop')) {
+                closeLightbox();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const lb = document.getElementById('lightbox');
+            if (!lb.classList.contains('active')) return;
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Swipe support for lightbox
+        let touchStartX = 0;
+        document.getElementById('lightbox').addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        document.getElementById('lightbox').addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].screenX;
+            if (Math.abs(diff) > 50) {
+                navigateLightbox(diff > 0 ? 1 : -1);
+            }
+        }, { passive: true });
+
+        // Smooth Scroll
+        function smoothScroll(e, id) {
+            e.preventDefault();
+            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Countdown Logic with flip animation
         const weddingDate = new Date('2026-05-03T08:00:00').getTime();
+        let prevValues = { days: '', hours: '', minutes: '', seconds: '' };
         const countdownInterval = setInterval(() => {
             const now = new Date().getTime();
             const distance = weddingDate - now;
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const vals = {
+                days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+                hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+                seconds: Math.floor((distance % (1000 * 60)) / 1000)
+            };
 
-            document.getElementById('days').innerText = days < 10 ? '0' + days : days;
-            document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
-            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
-            document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+            Object.keys(vals).forEach(key => {
+                const el = document.getElementById(key);
+                const val = vals[key] < 10 ? '0' + vals[key] : String(vals[key]);
+                if (el && val !== prevValues[key]) {
+                    el.classList.add('flip');
+                    el.innerText = val;
+                    setTimeout(() => el.classList.remove('flip'), 600);
+                    prevValues[key] = val;
+                }
+            });
 
             if (distance < 0) {
                 clearInterval(countdownInterval);
@@ -797,7 +858,7 @@
             }
         }, 1000);
 
-        // Scroll Animation (Intersection Observer)
+        // Scroll Animation + Active Nav Tracking
         document.addEventListener('DOMContentLoaded', () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -805,18 +866,29 @@
                         entry.target.classList.add('reveal-visible');
                     }
                 });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-            // Select all elements with reveal animations
-            const revealElements = document.querySelectorAll('.reveal-on-scroll, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate, .reveal-blur');
-            revealElements.forEach((el, index) => {
-                // Add staggered delay for sequential reveal
-                el.style.transitionDelay = `${index * 0.1}s`;
+            document.querySelectorAll('.reveal-on-scroll, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate, .reveal-blur').forEach((el, i) => {
+                el.style.transitionDelay = `${i * 0.08}s`;
                 observer.observe(el);
             });
+
+            // Active nav tracking
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('#bottom-nav a');
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { threshold: 0.3, rootMargin: '-20% 0px -50% 0px' });
+            sections.forEach(sec => navObserver.observe(sec));
         });
     </script>
 </x-layout>
