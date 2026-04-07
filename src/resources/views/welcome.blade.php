@@ -16,9 +16,12 @@
         <!-- Floating SVG Sakura Petals -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden">
             @for($i = 0; $i < 12; $i++)
-            <svg class="sakura-petal" style="left:{{ rand(2, 95) }}%;--delay:{{ $i * 0.8 }}s;--duration:{{ rand(10,16) }}s;" width="20" height="20" viewBox="0 0 20 20">
-                <ellipse cx="10" cy="10" rx="8" ry="5" fill="rgba(200,144,145,0.{{ rand(3,6) }})" transform="rotate({{ rand(0,180) }} 10 10)"/>
-            </svg>
+                <svg class="sakura-petal"
+                    style="left:{{ rand(2, 95) }}%;--delay:{{ $i * 0.8 }}s;--duration:{{ rand(10, 16) }}s;" width="20"
+                    height="20" viewBox="0 0 20 20">
+                    <ellipse cx="10" cy="10" rx="8" ry="5" fill="rgba(200,144,145,0.{{ rand(3, 6) }})"
+                        transform="rotate({{ rand(0, 180) }} 10 10)" />
+                </svg>
             @endfor
         </div>
 
@@ -30,13 +33,15 @@
 
             <p class="font-sans tracking-[0.5em] text-[#7B4E48]/60 text-[10px] uppercase">The Wedding of</p>
 
-            <h1 class="font-script text-7xl text-[#7B4E48] leading-tight drop-shadow-sm" style="text-shadow: 0 2px 20px rgba(123,78,72,0.15);">
+            <h1 class="font-script text-7xl text-[#7B4E48] leading-tight drop-shadow-sm"
+                style="text-shadow: 0 2px 20px rgba(123,78,72,0.15);">
                 Ahya<br>
                 <span class="gold-shimmer text-4xl">&</span><br>
                 Eko
             </h1>
 
-            <div class="inline-block bg-white/50 backdrop-blur-sm px-8 py-2.5 rounded-full border border-[#C9A96E]/30 shadow-sm">
+            <div
+                class="inline-block bg-white/50 backdrop-blur-sm px-8 py-2.5 rounded-full border border-[#C9A96E]/30 shadow-sm">
                 <p class="font-serif text-lg text-[#7B4E48] tracking-wide">3 Mei 2026</p>
             </div>
 
@@ -45,7 +50,8 @@
             </div>
         </div>
 
-        <p class="font-sans mb-2 tracking-[0.3em] text-xs uppercase relative z-10 text-[#7B4E48]/70 mt-10">Kepada Yth.</p>
+        <p class="font-sans mb-2 tracking-[0.3em] text-xs uppercase relative z-10 text-[#7B4E48]/70 mt-10">Kepada Yth.
+        </p>
         <div class="font-serif font-bold text-lg mb-8 glass-card px-8 py-3 rounded-full relative z-10 text-[#7B4E48]">
             {{ $guest ? $guest->name : 'Bapak/Ibu/Saudara/i' }}
         </div>
@@ -63,9 +69,12 @@
         <!-- Falling Sakura Petals on Main Page -->
         <div class="fixed inset-0 pointer-events-none z-5 overflow-hidden" id="main-petals">
             @for($p = 0; $p < 15; $p++)
-            <svg class="sakura-petal" style="left:{{ rand(2,96) }}%;--delay:{{ $p * 1.2 }}s;--duration:{{ rand(11,18) }}s;" width="16" height="16" viewBox="0 0 20 20">
-                <ellipse cx="10" cy="10" rx="7" ry="4" fill="rgba(200,144,145,0.{{ rand(2,5) }})" transform="rotate({{ rand(0,360) }} 10 10)"/>
-            </svg>
+                <svg class="sakura-petal"
+                    style="left:{{ rand(2, 96) }}%;--delay:{{ $p * 1.2 }}s;--duration:{{ rand(11, 18) }}s;" width="16"
+                    height="16" viewBox="0 0 20 20">
+                    <ellipse cx="10" cy="10" rx="7" ry="4" fill="rgba(200,144,145,0.{{ rand(2, 5) }})"
+                        transform="rotate({{ rand(0, 360) }} 10 10)" />
+                </svg>
             @endfor
         </div>
 
@@ -118,13 +127,15 @@
                     <div class="text-center group">
                         <div class="relative inline-block">
                             <div class="photo-frame w-48 h-48 mx-auto rounded-full p-1.5">
-                                <div class="w-full h-full rounded-full border-4 border-white overflow-hidden shadow-xl bg-gradient-to-br from-[#C9A96E] to-[#C89091] p-0.5">
+                                <div
+                                    class="w-full h-full rounded-full border-4 border-white overflow-hidden shadow-xl bg-gradient-to-br from-[#C9A96E] to-[#C89091] p-0.5">
                                     <img src="{{ asset('img/mempelai/wanita.jpeg') }}"
                                         class="w-full h-full rounded-full object-cover transition-transform duration-700 group-hover:scale-110"
                                         alt="Ahya Safira">
                                 </div>
                             </div>
-                            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#C9A96E] to-[#C89091] text-white text-xs font-bold px-6 py-1.5 rounded-full shadow-lg">
+                            <div
+                                class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#C9A96E] to-[#C89091] text-white text-xs font-bold px-6 py-1.5 rounded-full shadow-lg">
                                 Mempelai Wanita
                             </div>
                         </div>
@@ -150,13 +161,15 @@
                     <div class="text-center group">
                         <div class="relative inline-block">
                             <div class="photo-frame w-48 h-48 mx-auto rounded-full p-1.5">
-                                <div class="w-full h-full rounded-full border-4 border-white overflow-hidden shadow-xl bg-gradient-to-br from-[#7B4E48] to-[#C9A96E] p-0.5">
+                                <div
+                                    class="w-full h-full rounded-full border-4 border-white overflow-hidden shadow-xl bg-gradient-to-br from-[#7B4E48] to-[#C9A96E] p-0.5">
                                     <img src="{{ asset('img/mempelai/pria.jpeg') }}"
                                         class="w-full h-full rounded-full object-cover transition-transform duration-700 group-hover:scale-110"
                                         alt="Eko Prasetyo">
                                 </div>
                             </div>
-                            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#7B4E48] to-[#C9A96E] text-white text-xs font-bold px-6 py-1.5 rounded-full shadow-lg">
+                            <div
+                                class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#7B4E48] to-[#C9A96E] text-white text-xs font-bold px-6 py-1.5 rounded-full shadow-lg">
                                 Mempelai Pria
                             </div>
                         </div>
@@ -270,7 +283,7 @@
                         <h3 class="font-serif text-2xl font-bold text-[#7B4E48]">Resepsi</h3>
                         <div class="space-y-1">
                             <p class="font-bold text-lg text-[#7B4E48]">Minggu, 3 Mei 2026</p>
-                            <p class="text-[#C89091] font-semibold">Pukul 11:00 - 12:00 WIB (Sesi 2)</p>
+                            <p class="text-[#C89091] font-semibold">Pukul 11:00 - 12:00 WIB </p>
                         </div>
                         <div class="pt-2 border-t border-[#C89091]/20">
                             <p class="text-sm text-[#7B4E48]/80 leading-relaxed">
@@ -311,25 +324,30 @@
                 <!-- Row 1: Two portrait photos -->
                 <div class="gallery-row gallery-row-pair">
                     <div class="gallery-card" onclick="openLightbox(0)">
-                        <img src="{{ asset('img/gallery/'.$gallery_photos[0].'.jpeg') }}" alt="Gallery 1" loading="lazy">
+                        <img src="{{ asset('img/gallery/' . $gallery_photos[0] . '.jpeg') }}" alt="Gallery 1"
+                            loading="lazy">
                     </div>
                     <div class="gallery-card" onclick="openLightbox(1)">
-                        <img src="{{ asset('img/gallery/'.$gallery_photos[1].'.jpeg') }}" alt="Gallery 2" loading="lazy">
+                        <img src="{{ asset('img/gallery/' . $gallery_photos[1] . '.jpeg') }}" alt="Gallery 2"
+                            loading="lazy">
                     </div>
                 </div>
                 <!-- Row 2: One wide landscape photo -->
                 <div class="gallery-row gallery-row-single">
                     <div class="gallery-card gallery-card-wide" onclick="openLightbox(2)">
-                        <img src="{{ asset('img/gallery/'.$gallery_photos[2].'.jpeg') }}" alt="Gallery 3" loading="lazy">
+                        <img src="{{ asset('img/gallery/' . $gallery_photos[2] . '.jpeg') }}" alt="Gallery 3"
+                            loading="lazy">
                     </div>
                 </div>
                 <!-- Row 3: Two portrait photos -->
                 <div class="gallery-row gallery-row-pair">
                     <div class="gallery-card" onclick="openLightbox(3)">
-                        <img src="{{ asset('img/gallery/'.$gallery_photos[3].'.jpeg') }}" alt="Gallery 4" loading="lazy">
+                        <img src="{{ asset('img/gallery/' . $gallery_photos[3] . '.jpeg') }}" alt="Gallery 4"
+                            loading="lazy">
                     </div>
                     <div class="gallery-card" onclick="openLightbox(4)">
-                        <img src="{{ asset('img/gallery/'.$gallery_photos[4].'.jpeg') }}" alt="Gallery 5" loading="lazy">
+                        <img src="{{ asset('img/gallery/' . $gallery_photos[4] . '.jpeg') }}" alt="Gallery 5"
+                            loading="lazy">
                     </div>
                 </div>
             </div>
@@ -368,9 +386,8 @@
             <div class="lightbox-thumbs-container">
                 <div class="lightbox-thumbs-track custom-scrollbar">
                     @foreach($gallery_photos as $i => $photo)
-                    <img src="{{ asset('img/gallery/'.$photo.'.jpeg') }}"
-                        class="lightbox-thumb-img"
-                        onclick="goToLightbox({{ $i }})" data-index="{{ $i }}" loading="lazy">
+                        <img src="{{ asset('img/gallery/' . $photo . '.jpeg') }}" class="lightbox-thumb-img"
+                            onclick="goToLightbox({{ $i }})" data-index="{{ $i }}" loading="lazy">
                     @endforeach
                 </div>
             </div>
@@ -667,7 +684,7 @@
                     <p class="font-sans text-xs uppercase tracking-widest text-[#E9D0CB]/70 mb-2">Kami yang
                         berbahagia
                     </p>
-                    <h3 class="font-script text-4xl text-[#E9D0CB]">Fira & Eko</h3>
+                    <h3 class="font-script text-4xl text-[#E9D0CB]">Ahya & Eko</h3>
                 </div>
 
                 <!-- Hearts decoration -->
@@ -681,7 +698,7 @@
 
         <!-- Footer -->
         <footer class="text-center pt-8 pb-4">
-            <p class="font-script text-3xl gradient-text mb-2">Fira & Eko</p>
+            <p class="font-script text-3xl gradient-text mb-2">Ahya & Eko</p>
             <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-4">Created with Love • 2026</p>
             <div class="pt-3 border-t border-[#C9A96E]/20">
                 <p class="text-[10px] text-gray-400">Made by</p>
@@ -694,25 +711,31 @@
     </div>
 
     <!-- Bottom Navigation Bar -->
-    <nav class="bottom-nav fixed bottom-0 left-1/2 -translate-x-1/2 max-w-md w-full z-40 px-2 py-2" id="bottom-nav" style="display:none;">
+    <nav class="bottom-nav fixed bottom-0 left-1/2 -translate-x-1/2 max-w-md w-full z-40 px-2 py-2" id="bottom-nav"
+        style="display:none;">
         <div class="flex justify-around items-center">
-            <a href="#home" class="flex flex-col items-center gap-0.5 text-[#7B4E48]/50 text-[10px] py-1 px-2" onclick="smoothScroll(event,'home')">
+            <a href="#home" class="flex flex-col items-center gap-0.5 text-[#7B4E48]/50 text-[10px] py-1 px-2"
+                onclick="smoothScroll(event,'home')">
                 <i class="fas fa-home text-base"></i>
                 <span>Home</span>
             </a>
-            <a href="#mempelai" class="flex flex-col items-center gap-0.5 text-[#7B4E48]/50 text-[10px] py-1 px-2" onclick="smoothScroll(event,'mempelai')">
+            <a href="#mempelai" class="flex flex-col items-center gap-0.5 text-[#7B4E48]/50 text-[10px] py-1 px-2"
+                onclick="smoothScroll(event,'mempelai')">
                 <i class="fas fa-heart text-base"></i>
                 <span>Mempelai</span>
             </a>
-            <a href="#acara" class="flex flex-col items-center gap-0.5 text-[#7B4E48]/50 text-[10px] py-1 px-2" onclick="smoothScroll(event,'acara')">
+            <a href="#acara" class="flex flex-col items-center gap-0.5 text-[#7B4E48]/50 text-[10px] py-1 px-2"
+                onclick="smoothScroll(event,'acara')">
                 <i class="fas fa-calendar-alt text-base"></i>
                 <span>Acara</span>
             </a>
-            <a href="#gallery" class="flex flex-col items-center gap-0.5 text-[#7B4E48]/50 text-[10px] py-1 px-2" onclick="smoothScroll(event,'gallery')">
+            <a href="#gallery" class="flex flex-col items-center gap-0.5 text-[#7B4E48]/50 text-[10px] py-1 px-2"
+                onclick="smoothScroll(event,'gallery')">
                 <i class="fas fa-images text-base"></i>
                 <span>Gallery</span>
             </a>
-            <a href="#rsvp" class="flex flex-col items-center gap-0.5 text-[#7B4E48]/50 text-[10px] py-1 px-2" onclick="smoothScroll(event,'rsvp')">
+            <a href="#rsvp" class="flex flex-col items-center gap-0.5 text-[#7B4E48]/50 text-[10px] py-1 px-2"
+                onclick="smoothScroll(event,'rsvp')">
                 <i class="fas fa-envelope text-base"></i>
                 <span>RSVP</span>
             </a>
@@ -733,7 +756,7 @@
             setTimeout(() => {
                 mainContent.classList.remove('opacity-0');
                 mainContent.classList.add('opacity-100');
-                if(bottomNav) bottomNav.style.display = 'block';
+                if (bottomNav) bottomNav.style.display = 'block';
             }, 500);
 
             setTimeout(() => { cover.style.display = 'none'; }, 1200);
@@ -744,7 +767,7 @@
         // Gallery Images Array (5 curated photos)
         const galleryImages = [
             @foreach($gallery_photos as $i => $photo)
-            "{{ asset('img/gallery/'.$photo.'.jpeg') }}"{{ $i < count($gallery_photos) - 1 ? ',' : '' }}
+                "{{ asset('img/gallery/' . $photo . '.jpeg') }}"{{ $i < count($gallery_photos) - 1 ? ',' : '' }}
             @endforeach
         ];
         let currentLightboxIndex = 0;
