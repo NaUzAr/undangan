@@ -316,7 +316,7 @@
 
             @php
                 // 5 curated photos: 2 portrait, 1 landscape, 2 portrait
-                $gallery_photos = [2, 4, 5, 8, 6];
+                $gallery_photos = [2, 4, 11, 8, 6];
             @endphp
 
             <!-- 2-1-2 Gallery Grid -->
