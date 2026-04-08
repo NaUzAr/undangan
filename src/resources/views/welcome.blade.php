@@ -698,7 +698,7 @@
 
         <!-- Footer -->
         <footer class="text-center pt-8 pb-4">
-            <p class="font-script text-3xl gradient-text mb-2">WOIIIIIII</p>
+            <p class="font-script text-3xl gradient-text mb-2">Ahya & Eko</p>
             <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-4">Created with Love • 2026</p>
             <div class="pt-3 border-t border-[#C9A96E]/20">
                 <p class="text-[10px] text-gray-400">Made by</p>
