@@ -629,14 +629,43 @@
             </div>
 
             <script>
+                function fallbackCopyTextToClipboard(text) {
+                    var textArea = document.createElement("textarea");
+                    textArea.value = text;
+                    textArea.style.top = "0";
+                    textArea.style.left = "0";
+                    textArea.style.position = "fixed";
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        showToast();
+                    } catch (err) {
+                        console.error('Fallback: Oops, unable to copy', err);
+                    }
+                    document.body.removeChild(textArea);
+                }
+
+                function copyText(text) {
+                    if (!navigator.clipboard) {
+                        fallbackCopyTextToClipboard(text);
+                        return;
+                    }
+                    navigator.clipboard.writeText(text).then(function() {
+                        showToast();
+                    }, function(err) {
+                        fallbackCopyTextToClipboard(text);
+                    });
+                }
+
                 function copyRekening(id) {
                     const rek = document.getElementById(id).value;
-                    navigator.clipboard.writeText(rek);
-                    showToast();
+                    copyText(rek);
                 }
+
                 function copyAlamat() {
-                    navigator.clipboard.writeText('Rumah Ahya Safira, Panggeran IX RT 03/RW 34, Triharjo, Sleman');
-                    showToast();
+                    copyText('Rumah Ahya Safira, Panggeran IX RT 03/RW 34, Triharjo, Sleman');
                 }
                 function showToast() {
                     const toast = document.getElementById('copy-toast');
