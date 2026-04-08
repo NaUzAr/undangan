@@ -629,34 +629,54 @@
             </div>
 
             <script>
-                function fallbackCopyTextToClipboard(text) {
-                    var textArea = document.createElement("textarea");
-                    textArea.value = text;
-                    textArea.style.top = "0";
-                    textArea.style.left = "0";
-                    textArea.style.position = "fixed";
-                    document.body.appendChild(textArea);
-                    textArea.focus();
-                    textArea.select();
-                    try {
-                        document.execCommand('copy');
-                        showToast();
-                    } catch (err) {
-                        console.error('Fallback: Oops, unable to copy', err);
-                    }
-                    document.body.removeChild(textArea);
-                }
-
                 function copyText(text) {
-                    if (!navigator.clipboard) {
-                        fallbackCopyTextToClipboard(text);
+                    // Coba cara lawas yang synchronous dulu (paling ampuh di webview/iOS)
+                    var success = false;
+                    try {
+                        var textArea = document.createElement("textarea");
+                        textArea.value = text;
+                        textArea.style.top = "0";
+                        textArea.style.left = "0";
+                        textArea.style.position = "fixed";
+                        textArea.contentEditable = 'true';
+                        textArea.readOnly = false;
+                        document.body.appendChild(textArea);
+                        
+                        if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+                            var range = document.createRange();
+                            range.selectNodeContents(textArea);
+                            var sel = window.getSelection();
+                            sel.removeAllRanges();
+                            sel.addRange(range);
+                            textArea.setSelectionRange(0, 999999);
+                        } else {
+                            textArea.focus();
+                            textArea.select();
+                        }
+                        
+                        success = document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                    } catch (err) {
+                        console.error('Fallback fail', err);
+                    }
+
+                    // Jika sukses langsung tampilkan toast
+                    if (success) {
+                        showToast();
                         return;
                     }
-                    navigator.clipboard.writeText(text).then(function() {
-                        showToast();
-                    }, function(err) {
-                        fallbackCopyTextToClipboard(text);
-                    });
+
+                    // Jika cara lawas gagal, coba pakai navigator API (bisa pop-up permission)
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            showToast();
+                        }).catch(function(err) {
+                            console.error('Async copy fail', err);
+                            alert("Gagal menyalin. Silakan disalin manual.");
+                        });
+                    } else {
+                        alert("Gagal menyalin. Silakan disalin manual.");
+                    }
                 }
 
                 function copyRekening(id) {
