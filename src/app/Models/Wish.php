@@ -9,5 +9,5 @@ class Wish extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'message', 'video_path'];
+    protected $fillable = ['name', 'message', 'video_path', 'event_type'];
 }

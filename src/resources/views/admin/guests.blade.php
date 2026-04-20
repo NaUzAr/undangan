@@ -23,10 +23,22 @@
                         class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm transition">
                         <i class="fab fa-whatsapp mr-1"></i> Edit Template WA
                     </a>
-                    <a href="{{ route('admin.index') }}" class="text-blue-600 hover:text-blue-800 text-sm py-2">
+                    <a href="{{ route('admin.index', ['event' => $event]) }}" class="text-blue-600 hover:text-blue-800 text-sm py-2">
                         <i class="fas fa-arrow-left mr-1"></i> Kembali
                     </a>
                 </div>
+            </div>
+
+            <!-- Event Filter -->
+            <div class="mt-6 flex bg-gray-100 rounded-lg p-1 w-full max-w-sm">
+                <a href="{{ route('admin.guests', ['event' => 'resepsi']) }}" 
+                   class="flex-1 text-center py-2 rounded-md text-sm font-medium transition-all duration-200 {{ (!request()->has('event') || request('event') == 'resepsi') ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:bg-gray-200' }}">
+                   Akad & Resepsi
+                </a>
+                <a href="{{ route('admin.guests', ['event' => 'ngunduh_mantu']) }}" 
+                   class="flex-1 text-center py-2 rounded-md text-sm font-medium transition-all duration-200 {{ (request('event') == 'ngunduh_mantu') ? 'bg-white text-green-600 shadow-sm' : 'text-gray-500 hover:bg-gray-200' }}">
+                   Ngunduh Mantu
+                </a>
             </div>
         </div>
 
@@ -71,6 +83,7 @@
                     </h3>
                     <form action="{{ route('admin.guest.add') }}" method="POST" class="grid grid-cols-4 gap-3">
                         @csrf
+                        <input type="hidden" name="event_type" value="{{ $event ?? 'resepsi' }}">
                         <input type="text" name="name" placeholder="Nama Tamu *" required
                             class="px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none">
                         <input type="text" name="phone" placeholder="No. Telepon"
@@ -96,6 +109,7 @@
                         <form action="{{ route('admin.import.guests') }}" method="POST" enctype="multipart/form-data"
                             class="flex gap-2 flex-1">
                             @csrf
+                            <input type="hidden" name="event_type" value="{{ $event ?? 'resepsi' }}">
                             <input type="file" name="file" accept=".csv,.xlsx,.xls" required
                                 class="flex-1 px-3 py-2 border rounded-lg text-sm">
                             <button type="submit"
@@ -169,7 +183,8 @@
                                         $waNumber = '62' . substr($waNumber, 1);
                                     }
                                 }
-                                $inviteLink = url('/undangan/' . $guest->slug);
+                                $routePrefix = ($guest->event_type === 'ngunduh_mantu') ? '/ngunduh-mantu/' : '/undangan/';
+                                $inviteLink = url($routePrefix . $guest->slug);
                             @endphp
                             <tr class="border-b hover:bg-gray-50" data-guest-id="{{ $guest->id }}"
                                 data-phone="{{ $waNumber }}" data-name="{{ $guest->name }}" data-link="{{ $inviteLink }}"

@@ -14,31 +14,34 @@ class AdminController extends Controller
     /**
      * Show admin panel with all wishes, guests, and RSVPs
      */
-    public function index()
+    public function index(Request $request)
     {
-        $wishes = Wish::orderBy('created_at', 'desc')->get();
-        $guests = Guest::orderBy('created_at', 'desc')->get();
-        $rsvps = Rsvp::orderBy('created_at', 'desc')->get();
-        return view('admin.index', compact('wishes', 'guests', 'rsvps'));
+        $event = $request->query('event', 'resepsi');
+        $wishes = Wish::where('event_type', $event)->orderBy('created_at', 'desc')->get();
+        $guests = Guest::where('event_type', $event)->orderBy('created_at', 'desc')->get();
+        $rsvps = Rsvp::where('event_type', $event)->orderBy('created_at', 'desc')->get();
+        return view('admin.index', compact('wishes', 'guests', 'rsvps', 'event'));
     }
 
     /**
      * Show RSVP page
      */
-    public function rsvpIndex()
+    public function rsvpIndex(Request $request)
     {
-        $rsvps = Rsvp::orderBy('created_at', 'desc')->get();
-        return view('admin.rsvp', compact('rsvps'));
+        $event = $request->query('event', 'resepsi');
+        $rsvps = Rsvp::where('event_type', $event)->orderBy('created_at', 'desc')->get();
+        return view('admin.rsvp', compact('rsvps', 'event'));
     }
 
     /**
      * Show Guest management page
      */
-    public function guestsIndex()
+    public function guestsIndex(Request $request)
     {
-        $guests = Guest::orderBy('created_at', 'desc')->get();
+        $event = $request->query('event', 'resepsi');
+        $guests = Guest::where('event_type', $event)->orderBy('created_at', 'desc')->get();
         $template = $this->getWaTemplate();
-        return view('admin.guests', compact('guests', 'template'));
+        return view('admin.guests', compact('guests', 'template', 'event'));
     }
 
     /**
@@ -110,16 +113,20 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'phone' => 'nullable|string|max:50',
             'address' => 'nullable|string|max:500',
+            'event_type' => 'nullable|string|in:resepsi,ngunduh_mantu',
         ]);
+
+        $event_type = $request->event_type ?? 'resepsi';
 
         $guest = Guest::create([
             'name' => $request->name,
             'phone' => $request->phone,
             'address' => $request->address,
             'slug' => Guest::generateSlug($request->name),
+            'event_type' => $event_type,
         ]);
 
-        return redirect()->route('admin.guests')->with('success', 'Tamu "' . $guest->name . '" berhasil ditambahkan!');
+        return redirect()->route('admin.guests', ['event' => $event_type])->with('success', 'Tamu "' . $guest->name . '" berhasil ditambahkan!');
     }
 
     /**
@@ -237,8 +244,10 @@ class AdminController extends Controller
     {
         $request->validate([
             'file' => 'required|file|mimes:csv,txt,xlsx,xls|max:5120',
+            'event_type' => 'nullable|string|in:resepsi,ngunduh_mantu',
         ]);
 
+        $event_type = $request->event_type ?? 'resepsi';
         $file = $request->file('file');
         $extension = $file->getClientOriginalExtension();
 
@@ -248,8 +257,10 @@ class AdminController extends Controller
         // Handle CSV files
         if (in_array($extension, ['csv', 'txt'])) {
             $handle = fopen($file->getPathname(), 'r');
-            $header = fgetcsv($handle); // Skip header row
-
+            // Check if first row is header
+            $header = fgetcsv($handle); 
+            // Optional: check if header actually contains 'Nama'
+            
             while (($row = fgetcsv($handle)) !== false) {
                 if (count($row) >= 1 && !empty(trim($row[0]))) {
                     try {
@@ -258,6 +269,7 @@ class AdminController extends Controller
                             'phone' => isset($row[1]) ? trim($row[1]) : null,
                             'address' => isset($row[2]) ? trim($row[2]) : null,
                             'slug' => Guest::generateSlug(trim($row[0])),
+                            'event_type' => $event_type,
                         ]);
                         $imported++;
                     } catch (\Exception $e) {
@@ -273,7 +285,7 @@ class AdminController extends Controller
             $message .= ' (' . count($errors) . ' error)';
         }
 
-        return redirect()->route('admin.index')->with('success', $message);
+        return redirect()->route('admin.index', ['event' => $event_type])->with('success', $message);
     }
 
     /**
@@ -292,9 +304,10 @@ class AdminController extends Controller
     /**
      * Download RSVP data as CSV
      */
-    public function downloadRsvp()
+    public function downloadRsvp(Request $request)
     {
-        $rsvps = Rsvp::orderBy('created_at', 'desc')->get();
+        $event = $request->query('event', 'resepsi');
+        $rsvps = Rsvp::where('event_type', $event)->orderBy('created_at', 'desc')->get();
 
         // Calculate summary
         $hadirCount = $rsvps->where('attendance', 'yes')->count();

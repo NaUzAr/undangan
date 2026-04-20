@@ -9,5 +9,5 @@ class Rsvp extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'email', 'phone', 'attendance', 'guests', 'wa_sent'];
+    protected $fillable = ['name', 'email', 'phone', 'attendance', 'guests', 'wa_sent', 'event_type'];
 }

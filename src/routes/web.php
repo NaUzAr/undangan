@@ -8,6 +8,8 @@ use App\Http\Controllers\AdminController;
 // Main invitation routes
 Route::get('/', [InvitationController::class, 'index'])->name('home');
 Route::get('/undangan/{slug}', [InvitationController::class, 'showPersonalized'])->name('invitation.personal');
+Route::get('/ngunduh-mantu', [InvitationController::class, 'ngunduhMantu'])->name('ngunduh-mantu');
+Route::get('/ngunduh-mantu/{slug}', [InvitationController::class, 'showPersonalizedNgunduhMantu'])->name('ngunduh-mantu.personal');
 Route::post('/rsvp', [InvitationController::class, 'storeRSVP'])->name('rsvp.store');
 Route::post('/wishes', [InvitationController::class, 'storeWish'])->name('wishes.store');
 

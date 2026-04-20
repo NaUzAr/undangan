@@ -22,6 +22,18 @@
                     <i class="fas fa-arrow-left mr-1"></i> Kembali
                 </a>
             </div>
+            
+            <!-- Event Filter -->
+            <div class="mt-6 flex bg-gray-100 rounded-lg p-1 w-full max-w-sm">
+                <a href="{{ route('admin.index', ['event' => 'resepsi']) }}" 
+                   class="flex-1 text-center py-2 rounded-md text-sm font-medium transition-all duration-200 {{ (!request()->has('event') || request('event') == 'resepsi') ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:bg-gray-200' }}">
+                   Akad & Resepsi
+                </a>
+                <a href="{{ route('admin.index', ['event' => 'ngunduh_mantu']) }}" 
+                   class="flex-1 text-center py-2 rounded-md text-sm font-medium transition-all duration-200 {{ (request('event') == 'ngunduh_mantu') ? 'bg-white text-green-600 shadow-sm' : 'text-gray-500 hover:bg-gray-200' }}">
+                   Ngunduh Mantu
+                </a>
+            </div>
         </div>
 
         <!-- Success Message -->

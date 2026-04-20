@@ -18,6 +18,7 @@ class Guest extends Model
         'has_opened',
         'opened_at',
         'wa_sent',
+        'event_type',
     ];
 
     protected $casts = [
