@@ -26,13 +26,13 @@
                 <span class="text-[#3A7D52] text-2xl">❦</span>
             </div>
 
-            <p class="font-sans tracking-[0.5em] text-[#1A3A28]/70 text-[10px] uppercase">The Wedding of</p>
+            <p class="font-sans tracking-[0.5em] text-[#1A3A28]/70 text-[10px] uppercase">Ngunduh Mantu</p>
 
             <h1 class="font-script text-7xl text-[#2D5A3D] leading-tight drop-shadow-sm"
                 style="text-shadow: 0 2px 20px rgba(45,90,61,0.15);">
-                Ahya<br>
+                Eko<br>
                 <span class="matcha-gold-shimmer text-4xl font-script">&</span><br>
-                Eko
+                Ahya
             </h1>
 
             <div
@@ -81,7 +81,7 @@
 
         <section id="home" class="text-center pt-6 reveal-on-scroll relative">
             <div class="space-y-5">
-                <p class="text-[#3A7D52] text-xs tracking-[0.5em] uppercase font-medium">The Wedding of</p>
+                <p class="text-[#3A7D52] text-xs tracking-[0.5em] uppercase font-medium">Ngunduh Mantu</p>
                 <h1 class="font-script text-7xl text-[#1A3A28] drop-shadow-sm leading-tight">Eko & Ahya</h1>
                 <div class="inline-block matcha-glass-card px-8 py-3 rounded-full">
                     <p class="font-serif text-xl text-[#2D5A3D]">Ahad Pahing, 10 Mei 2026</p>
