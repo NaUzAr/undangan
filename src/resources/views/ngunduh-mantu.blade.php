@@ -82,7 +82,7 @@
         <section id="home" class="text-center pt-6 reveal-on-scroll relative">
             <div class="space-y-5">
                 <p class="text-[#3A7D52] text-xs tracking-[0.5em] uppercase font-medium">The Wedding of</p>
-                <h1 class="font-script text-7xl text-[#1A3A28] drop-shadow-sm leading-tight">Ahya & Eko</h1>
+                <h1 class="font-script text-7xl text-[#1A3A28] drop-shadow-sm leading-tight">Eko & Ahya</h1>
                 <div class="inline-block matcha-glass-card px-8 py-3 rounded-full">
                     <p class="font-serif text-xl text-[#2D5A3D]">Ahad Pahing, 10 Mei 2026</p>
                 </div>
@@ -672,7 +672,7 @@
                     <p class="font-sans text-xs uppercase tracking-widest text-[#3A7D52] mb-2 font-bold">Kami yang
                         berbahagia
                     </p>
-                    <h3 class="font-script text-4xl text-[#1A3A28]">Ahya & Eko</h3>
+                    <h3 class="font-script text-4xl text-[#1A3A28]">Eko & Ahya</h3>
                 </div>
 
                 <div class="flex items-center justify-center gap-4 pt-4">
@@ -684,7 +684,7 @@
         </section>
 
         <footer class="text-center pt-8 pb-4">
-            <p class="font-script text-3xl text-[#2D5A3D] mb-2">Ahya & Eko</p>
+            <p class="font-script text-3xl text-[#2D5A3D] mb-2">Eko & Ahya</p>
             <p class="text-[10px] text-[#2D5A3D]/50 uppercase tracking-widest mb-4">Created with Love • 2026</p>
             <div class="pt-3 border-t border-[#6B9E6B]/20">
                 <p class="text-[10px] text-[#2D5A3D]/50">Made by</p>
