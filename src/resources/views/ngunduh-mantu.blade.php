@@ -116,38 +116,6 @@
                         <div class="relative inline-block">
                             <div class="matcha-photo-frame w-48 h-48 mx-auto rounded-full p-1.5">
                                 <div
-                                    class="w-full h-full rounded-full border-4 border-white overflow-hidden shadow-xl bg-gradient-to-br from-[#6B9E6B] to-[#3A7D52] p-0.5">
-                                    <img src="{{ asset('img/mempelai/wanita.jpeg') }}"
-                                        class="w-full h-full rounded-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                        alt="Ahya Safira">
-                                </div>
-                            </div>
-                            <div
-                                class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#6B9E6B] to-[#3A7D52] text-white text-xs font-bold px-6 py-1.5 rounded-full shadow-lg">
-                                Mempelai Wanita
-                            </div>
-                        </div>
-                        <h2 class="font-script text-5xl text-[#1A3A28] mt-7 mb-2">Ahya Safira</h2>
-                        <p class="font-sans text-xs font-medium tracking-widest text-[#2D5A3D]/80 uppercase">
-                            Putri Terakhir dari Bpk. Haryanta & Ibu Ratri Dwi Wahyuni
-                        </p>
-                        <a href="https://instagram.com/ahyasafiraa_" target="_blank"
-                            class="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-[#2D5A3D]/10 text-[#2D5A3D] text-sm rounded-full hover:bg-[#2D5A3D] hover:text-white transition-all duration-300">
-                            <i class="fab fa-instagram"></i>
-                            @ahyasafiraa_
-                        </a>
-                    </div>
-
-                    <div class="flex items-center justify-center gap-4">
-                        <div class="w-20 h-px bg-gradient-to-r from-transparent to-[#3A7D52]/60"></div>
-                        <div class="text-4xl text-[#3A7D52] heart-beat">♥</div>
-                        <div class="w-20 h-px bg-gradient-to-l from-transparent to-[#3A7D52]/60"></div>
-                    </div>
-
-                    <div class="text-center group">
-                        <div class="relative inline-block">
-                            <div class="matcha-photo-frame w-48 h-48 mx-auto rounded-full p-1.5">
-                                <div
                                     class="w-full h-full rounded-full border-4 border-white overflow-hidden shadow-xl bg-gradient-to-br from-[#2D5A3D] to-[#6B9E6B] p-0.5">
                                     <img src="{{ asset('img/mempelai/pria.jpeg') }}"
                                         class="w-full h-full rounded-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -167,6 +135,38 @@
                             class="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-[#2D5A3D]/10 text-[#2D5A3D] text-sm rounded-full hover:bg-[#2D5A3D] hover:text-white transition-all duration-300">
                             <i class="fab fa-instagram"></i>
                             @eko_prasetyo07
+                        </a>
+                    </div>
+
+                    <div class="flex items-center justify-center gap-4">
+                        <div class="w-20 h-px bg-gradient-to-r from-transparent to-[#3A7D52]/60"></div>
+                        <div class="text-4xl text-[#3A7D52] heart-beat">♥</div>
+                        <div class="w-20 h-px bg-gradient-to-l from-transparent to-[#3A7D52]/60"></div>
+                    </div>
+
+                    <div class="text-center group">
+                        <div class="relative inline-block">
+                            <div class="matcha-photo-frame w-48 h-48 mx-auto rounded-full p-1.5">
+                                <div
+                                    class="w-full h-full rounded-full border-4 border-white overflow-hidden shadow-xl bg-gradient-to-br from-[#6B9E6B] to-[#3A7D52] p-0.5">
+                                    <img src="{{ asset('img/mempelai/wanita.jpeg') }}"
+                                        class="w-full h-full rounded-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        alt="Ahya Safira">
+                                </div>
+                            </div>
+                            <div
+                                class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#6B9E6B] to-[#3A7D52] text-white text-xs font-bold px-6 py-1.5 rounded-full shadow-lg">
+                                Mempelai Wanita
+                            </div>
+                        </div>
+                        <h2 class="font-script text-5xl text-[#1A3A28] mt-7 mb-2">Ahya Safira</h2>
+                        <p class="font-sans text-xs font-medium tracking-widest text-[#2D5A3D]/80 uppercase">
+                            Putri Terakhir dari Bpk. Haryanta & Ibu Ratri Dwi Wahyuni
+                        </p>
+                        <a href="https://instagram.com/ahyasafiraa_" target="_blank"
+                            class="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-[#2D5A3D]/10 text-[#2D5A3D] text-sm rounded-full hover:bg-[#2D5A3D] hover:text-white transition-all duration-300">
+                            <i class="fab fa-instagram"></i>
+                            @ahyasafiraa_
                         </a>
                     </div>
                 </div>
@@ -249,12 +249,12 @@
                             <p class="text-[#3A7D52] font-semibold">Pukul 10:00 - 12:00 WIB </p>
                         </div>
                         <div class="pt-2 border-t border-[#6B9E6B]/20">
-                            <p class="text-sm text-[#2D5A3D]/80 leading-relaxed">
+                            <p class="text-sm font-medium text-[#1A3A28] leading-relaxed">
                                 📍 Lokasi Tasyakur<br>
                                 <span class="text-xs">Tegalan, RT 004 RW 011, Sidomoyo, Godean, Sleman</span>
                             </p>
                             <p
-                                class="text-[10px] text-[#2D5A3D]/70 mt-2 bg-white/50 p-2 rounded-lg border border-[#6B9E6B]/10">
+                                class="text-[11px] text-[#1A3A28] font-medium mt-2 bg-white/80 p-2.5 rounded-lg border border-[#6B9E6B]/30 shadow-sm">
                                 <strong>Titik Kenal:</strong> Dekat Masjid Darussalam Tegalan.<br>
                                 Akses melalui Jalan Sidomoyo (dari arah Perempatan Cebongan ke selatan) atau Jalan
                                 Godean KM 7,5 (dari Perempatan Munggur ke utara).
@@ -264,8 +264,8 @@
                 </div>
             </div>
 
-            <a href="https://maps.app.goo.gl/aaZt9WmtbNTK7ubJ6" target="_blank"
-                class="mt-6 flex items-center justify-center gap-2 w-full py-4 bg-gradient-to-r from-[#00000] to-[#00000] text-white rounded-full text-sm font-bold hover:shadow-lg transition transform hover:-translate-y-0.5">
+            <a href="https://maps.app.goo.gl/yT3gB7aR8jGySNgk6?g_st=iw" target="_blank"
+                class="mt-6 flex items-center justify-center gap-2 w-full py-4 bg-[#2D5A3D] text-white rounded-full text-sm font-bold hover:bg-[#1A3A28] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
                 <i class="fas fa-map-marked-alt text-lg"></i>
                 <span>Buka di Google Maps</span>
             </a>
@@ -526,14 +526,14 @@
 
                 <div class="space-y-5 relative z-10">
                     <div class="text-center space-y-1">
-                        <p class="text-[#3A7D52] text-sm font-bold uppercase tracking-wider">Bank Mandiri</p>
-                        <p class="text-[#2D5A3D] text-lg font-mono tracking-wider">No. Rekening 1370018832143</p>
-                        <p class="text-[#2D5A3D]/70 text-sm">a.n <span class="font-bold">AHYA SAFIRA</span></p>
+                        <p class="text-[#3A7D52] text-sm font-bold uppercase tracking-wider">Bank BPD DIY</p>
+                        <p class="text-[#2D5A3D] text-lg font-mono tracking-wider">No. Rekening 005221031239</p>
+                        <p class="text-[#2D5A3D]/70 text-sm">a.n <span class="font-bold">EKO PRASETYO</span></p>
                         <button onclick="copyRekening('rek1')"
                             class="mt-2 inline-flex items-center gap-2 px-5 py-2 bg-[#2D5A3D] text-white text-sm rounded-full hover:bg-[#1A3A28] transition shadow-md">
                             Copy Rekening <i class="fas fa-copy"></i>
                         </button>
-                        <input type="hidden" id="rek1" value="1370018832143">
+                        <input type="hidden" id="rek1" value="005221031239">
                     </div>
 
                     <div class="flex items-center justify-center gap-4">
