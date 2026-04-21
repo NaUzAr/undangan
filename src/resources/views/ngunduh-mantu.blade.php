@@ -550,62 +550,41 @@
 
             <script>
                 function copyText(text) {
-                    // Coba cara lawas yang synchronous dulu (paling ampuh di webview/iOS)
-                    var success = false;
-                    try {
-                        var textArea = document.createElement("textarea");
-                        textArea.value = text;
-                        textArea.style.top = "0";
-                        textArea.style.left = "0";
-                        textArea.style.position = "fixed";
-                        textArea.contentEditable = 'true';
-                        textArea.readOnly = false;
-                        document.body.appendChild(textArea);
-
-                        if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
-                            var range = document.createRange();
-                            range.selectNodeContents(textArea);
-                            var sel = window.getSelection();
-                            sel.removeAllRanges();
-                            sel.addRange(range);
-                            textArea.setSelectionRange(0, 999999);
-                        } else {
-                            textArea.focus();
-                            textArea.select();
-                        }
-
-                        success = document.execCommand('copy');
-                        document.body.removeChild(textArea);
-                    } catch (err) {
-                        console.error('Fallback fail', err);
-                    }
-
-                    // Jika sukses langsung tampilkan toast
-                    if (success) {
-                        showToast();
-                        return;
-                    }
-
-                    // Jika cara lawas gagal, coba pakai navigator API (bisa pop-up permission)
-                    if (navigator.clipboard) {
-                        navigator.clipboard.writeText(text).then(function () {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        navigator.clipboard.writeText(text).then(function() {
                             showToast();
-                        }).catch(function (err) {
-                            console.error('Async copy fail', err);
-                            alert("Gagal menyalin. Silakan disalin manual.");
+                        }).catch(function() {
+                            fallbackCopy(text);
                         });
                     } else {
-                        alert("Gagal menyalin. Silakan disalin manual.");
+                        fallbackCopy(text);
                     }
+                }
+
+                function fallbackCopy(text) {
+                    var textArea = document.createElement("textarea");
+                    textArea.value = text;
+                    textArea.style.position = "fixed";
+                    textArea.style.left = "-9999px";
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    try {
+                        var successful = document.execCommand('copy');
+                        if (successful) {
+                            showToast();
+                        } else {
+                            alert("Gagal menyalin otomatis. Silakan salin manual: " + text);
+                        }
+                    } catch (err) {
+                        alert("Gagal menyalin otomatis. Silakan salin manual: " + text);
+                    }
+                    document.body.removeChild(textArea);
                 }
 
                 function copyRekening(id) {
                     const rek = document.getElementById(id).value;
                     copyText(rek);
-                }
-
-                function copyAlamat() {
-                    copyText('Rumah Ahya Safira, Panggeran IX RT 03/RW 34, Triharjo, Sleman');
                 }
                 function showToast() {
                     const toast = document.getElementById('copy-toast');
