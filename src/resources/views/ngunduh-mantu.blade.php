@@ -536,28 +536,6 @@
                         <input type="hidden" id="rek1" value="005221031239">
                     </div>
 
-                    <div class="flex items-center justify-center gap-4">
-                        <div class="w-12 h-px bg-[#6B9E6B]/40"></div>
-                        <span class="text-[#6B9E6B]">♥</span>
-                        <div class="w-12 h-px bg-[#6B9E6B]/40"></div>
-                    </div>
-
-                    <div class="text-center">
-                        <div class="inline-block text-[#3A7D52] text-4xl">🎁</div>
-                    </div>
-
-                    <div class="text-center space-y-1">
-                        <p class="text-[#3A7D52] text-sm font-bold uppercase tracking-wider">Kirim Kado:</p>
-                        <p class="text-[#2D5A3D]/80 text-sm leading-relaxed">
-                            Rumah Ahya Safira<br>
-                            Panggeran IX RT 03/RW 34<br>
-                            Triharjo, Sleman
-                        </p>
-                        <button onclick="copyAlamat()"
-                            class="mt-2 inline-flex items-center gap-2 px-5 py-2 bg-[#2D5A3D] text-white text-sm rounded-full hover:bg-[#1A3A28] transition shadow-md">
-                            Copy Alamat <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
                 </div>
 
                 <div class="text-center mt-6">
