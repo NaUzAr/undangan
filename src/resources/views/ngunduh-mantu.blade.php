@@ -246,7 +246,7 @@
                         <h3 class="font-serif text-2xl font-bold text-[#2D5A3D]">Ngunduh Mantu</h3>
                         <div class="space-y-1">
                             <p class="font-bold text-lg text-[#2D5A3D]">Ahad Pahing, 10 Mei 2026</p>
-                            <p class="text-[#3A7D52] font-semibold">Pukul 10:00 - 12:00 WIB </p>
+                            <p class="text-[#3A7D52] font-semibold">Pukul 10:00 WIB - Selesai</p>
                         </div>
                         <div class="pt-2 border-t border-[#6B9E6B]/20">
                             <p class="text-sm font-medium text-[#1A3A28] leading-relaxed">
